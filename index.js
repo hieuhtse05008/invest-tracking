@@ -196,13 +196,14 @@ const app = createApp({
 
 
             const recvWindow = 30000;
-            const ts = new Date().getTime() ;
+            const ts = Date.now();
             const sig = CryptoJS.HmacSHA256(`timestamp=${ts}&recvWindow=${recvWindow}`, "0b6d7c6a7700452e836f95aaaed2cf56")
                 .toString(CryptoJS.enc.Hex);
             $.ajax({
-                url:`https://api.mexc.com/api/v3/capital/config/getall?signature=${sig}&timestamp=${ts}&recvWindow=${recvWindow}`,
+                url:`https://api.mexc.com/api/v3/capital/config/getall?timestamp=${ts}&recvWindow=${recvWindow}&signature=${sig}`,
                 type: "GET",
                 beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Content-Type", "application/json");
                     xhr.setRequestHeader("X-MEXC-APIKEY", "mx0vglNsDt2LD1L4JJ");
                 },
                 success: function (e) {
