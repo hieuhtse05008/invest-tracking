@@ -157,10 +157,10 @@ const app = createApp({
                 url,
                 type: "GET",
                 beforeSend: function (xhr) {
-                    xhr.setRequestHeader("X-BAPI-SIGN", apiSecret(tt + apiKey + 5000 + params));
+                    xhr.setRequestHeader("X-BAPI-SIGN", apiSecret(tt + apiKey + 50000 + params));
                     xhr.setRequestHeader("X-BAPI-API-KEY", apiKey);
                     xhr.setRequestHeader("X-BAPI-TIMESTAMP", tt);
-                    xhr.setRequestHeader("X-BAPI-RECV-WINDOW", 5000);
+                    xhr.setRequestHeader("X-BAPI-RECV-WINDOW", 50000);
                 },
                 success: function (e) {
                     console.log("success", e);
@@ -193,6 +193,7 @@ const app = createApp({
                     // cmcWs();
                 }
             });
+
 
 
             const recvWindow = 30000;
